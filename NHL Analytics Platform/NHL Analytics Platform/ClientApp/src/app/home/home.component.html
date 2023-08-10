@@ -1,14 +1,34 @@
-<h1>Hello, world!</h1>
-<p>Welcome to your new single-page application, built with:</p>
-<ul>
-  <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-  <li><a href='https://angular.io/'>Angular</a> and <a href='http://www.typescriptlang.org/'>TypeScript</a> for client-side code</li>
-  <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
-</ul>
-<p>To help you get started, we've also set up:</p>
-<ul>
-  <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-  <li><strong>Angular CLI integration</strong>. In development mode, there's no need to run <code>ng serve</code>. It runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-  <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration automatically invokes <code>ng build</code> to produce minified, ahead-of-time compiled JavaScript files.</li>
-</ul>
-<p>The <code>ClientApp</code> subdirectory is a standard Angular CLI application. If you open a command prompt in that directory, you can run any <code>ng</code> command (e.g., <code>ng test</code>), or use <code>npm</code> to install extra packages into it.</p>
+<form (ngSubmit)="getData()">
+  <input type="search" id="nameInput" placeholder="Search Player"/>
+  <select  id="teamsList">
+    <option value="" selected>Select a Team</option>
+  </select>
+  <select id="situationList" placeholder="Select Situation"></select>
+  <input type="submit" />
+</form>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="players">
+  <thead>
+    <tr>
+      <th (click)="sortBy($event)" data-index="2" id="nameHead">Name</th>
+      <th (click)="sortBy($event)" data-index="3" id="teamHead">Team</th>
+      <th (click)="sortBy($event)" data-index="7">TOI</th>
+      <th (click)="sortBy($event)" data-index="10">On Ice xGoals%</th>
+      <th (click)="sortBy($event)" data-index="11">Off Ice xGoals%</th>
+      <th (click)="sortBy($event)" data-index="10!11">On/Off Ice xGoals Diff</th>
+      <th (click)="sortBy($event)" data-index="85">On Ice fxGoals</th>
+      <th (click)="sortBy($event)" data-index="145!115">On/Off Ice xGoals Against Difference</th>
+    </tr>
+  </thead>
+  <tbody id="playerItems">
+    <tr *ngFor="let player of players">
+      <td data-index="2">{{ player.split(',')[2] }}</td>
+      <td data-index="3">{{ player.split(',')[3] }}</td>
+      <td data-index="7">{{ player.split(',')[7] }}</td>
+      <td data-index="10">{{ player.split(',')[10] }}</td>
+      <td data-index="11">{{ player.split(',')[11] }}</td>
+      <td data-index="10!11">{{ RoundVal(player.split(',')[10] - player.split(',')[11])  }}</td>
+      <td data-index="85">{{ player.split(',')[85] }}</td>
+      <td data-index="145!115">{{ RoundVal(player.split(',')[145] - player.split(',')[115])  }}</td>
+    </tr>
+  </tbody>
+</table>
