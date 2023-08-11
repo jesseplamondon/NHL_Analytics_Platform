@@ -1,22 +1,29 @@
-<form (ngSubmit)="getData()">
-  <input type="search" id="nameInput" placeholder="Search Player"/>
-  <select  id="teamsList">
+<form>
+  <input type="search" id="nameInput" placeholder="Search Player" (change)="getData()" />
+  <input type="search" id="toiInput" placeholder="Minimum TOI" (change)="getData()" />
+  <select id="teamsList" (change)="getData()">
     <option value="" selected>Select a Team</option>
   </select>
-  <select id="situationList" placeholder="Select Situation"></select>
-  <input type="submit" />
+  <select id="positionList" (change)="getData()">
+    <option value="" selected>Select a Position</option>
+    <option value="F">F</option>
+    <option value="D">D</option>
+  </select>
+  <select id="situationList" placeholder="Select Situation" (change)="getData()">
+    <option value="" selected>Select a Situation</option>
+  </select>
 </form>
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="players">
   <thead>
     <tr>
-      <th (click)="sortBy($event)" data-index="2" id="nameHead">Name</th>
-      <th (click)="sortBy($event)" data-index="3" id="teamHead">Team</th>
-      <th (click)="sortBy($event)" data-index="7">TOI</th>
-      <th (click)="sortBy($event)" data-index="10">On Ice xGoals%</th>
-      <th (click)="sortBy($event)" data-index="11">Off Ice xGoals%</th>
-      <th (click)="sortBy($event)" data-index="10!11">On/Off Ice xGoals Diff</th>
-      <th (click)="sortBy($event)" data-index="85">On Ice fxGoals</th>
-      <th (click)="sortBy($event)" data-index="145!115">On/Off Ice xGoals Against Difference</th>
+      <th (click)="sortBy($event)" data-index="2" data-state="" id="nameHead">Name</th>
+      <th (click)="sortBy($event)" data-index="3" data-state="" id="teamHead">Team</th>
+      <th (click)="sortBy($event)" data-index="7" data-state="">TOI</th>
+      <th (click)="sortBy($event)" data-index="10" data-state="">On Ice xGoals%</th>
+      <th (click)="sortBy($event)" data-index="11" data-state="">Off Ice xGoals%</th>
+      <th (click)="sortBy($event)" data-index="10!11" data-state="">On/Off Ice xGoals Diff</th>
+      <th (click)="sortBy($event)" data-index="85" data-state="">On Ice fxGoals</th>
+      <th (click)="sortBy($event)" data-index="145!115" data-state="">On/Off Ice xGoals Against Difference</th>
     </tr>
   </thead>
   <tbody id="playerItems">

@@ -1,0 +1,23 @@
+<h2 class="mb-3">Teams</h2>
+<select class="mb-4" id="teamsList" (change)="getData()">
+  <option value="" selected>Select a Team</option>
+</select>
+<select id="situationList" placeholder="Select Situation" (change)="getData()">
+  <option value="" selected>Select a Situation</option>
+</select>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="data">
+  <thead>
+    <tr>
+      <th data-index="0" data-state="" (click)="sortBy($event)" id="teamHead">Team</th>
+      <th data-index="5" data-state="" (click)="sortBy($event)">Situation</th>
+      <th data-index="7" data-state="" (click)="sortBy($event)">xGoals %</th>
+    </tr>
+  </thead>
+  <tbody id="playerItems">
+    <tr *ngFor="let d of data">
+      <td data-index="0">{{ d.split(',')[0] }}</td>
+      <td data-index="5">{{ d.split(',')[5] }}</td>
+      <td data-index="7">{{ d.split(',')[7] }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -8,6 +8,9 @@ import { Component } from '@angular/core';
 export class NavMenuComponent {
   isExpanded = false;
 
+  reload() {
+    window.location.reload();
+  }
   collapse() {
     this.isExpanded = false;
   }
